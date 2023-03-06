@@ -4,9 +4,11 @@ import Image from 'next/image';
 import brain from '../assets/brain.svg';
 import stamp from '../assets/stamp.svg';
 import fb from '../assets/fb.svg';
-import ig from '../assets/ig.svg';
 import twitter from '../assets/twitter.svg';
+import fbshare from '../assets/fb-share.svg';
+import twittershare from '../assets/twitter-share.svg';
 import share from '../assets/share.svg';
+import copy from '../assets/copy.svg';
 
 const Home = () => {
   const [userInput, setUserInput] = useState('');
@@ -19,6 +21,13 @@ const Home = () => {
     console.log(open);
     console.log('click');
   }
+
+  const copyreport = () => {
+    navigator.clipboard.writeText(apiOutput);
+    console.log(apiOutput);
+    console.log('copied');
+  }
+
   const callGenerateEndpoint = async () => {
     setIsGenerating(true);
     
@@ -43,7 +52,7 @@ const Home = () => {
     setUserInput(event.target.value);
   };
   return (
-    <div className="root">
+    <main className="root">
       <div className='topper'>
       <p>brainwashd</p>
       <Image className='brain smaller' src={brain} alt='brain'/>
@@ -58,24 +67,26 @@ const Home = () => {
               <div className="output-content">
                 <p>{apiOutput}</p>
               </div>
+              <button className='copy-button' onClick={copyreport}>
+              <Image src={copy} className='share' alt='copy symbol'/>
+              </button>
               <button className='share-button' onClick={toggle}>
               <Image src={share} className='share' alt='share symbol'/>
               </button>
-              {/* <div className={open ? 'multi-button move':'multi-button'}>
-                <button className={open ? 'fas fa-heart move1':'fas fa-heart'}></button>
-                <button className={open ? 'fas fa-comment move2':'fas fa-comment'}></button>
-                <button className={open ? 'fas fa-share-alt move3':'fas fa-share-alt'}></button>
-                <button className={open ? 'fas fa-trash move4':'fas fa-trash'}></button>
+              <div className='multi-button'>
+                <a className={open ? 'move1 icon':'icon'} href="https://twitter.com/intent/tweet">
+                  <Image src={fbshare} alt='facebook logo'/>
+                </a>
+                <a className={open ? 'move2':''}>
+                <Image src={twittershare} className='icon' alt='twitter logo'/>
+                </a>
               </div>
-              <div className="slide-container"></div> */}
           </div>
         )}
         <div id="right" className={apiOutput ? 'small right':'right'}>
         <div className="header">
           <Image className='brain' src={brain} alt='brain'/>
-          {/* <Image className='brain' src={brain} alt='brain'/> */}
           <div className='header-title'>
-          {/* <div className='header-title'> */}
             <h1>brainwashd?</h1>
           </div>
           <div className="header-subtitle">
@@ -87,21 +98,24 @@ const Home = () => {
           <div className='prompt-container'>
             <input placeholder="Drop content link:" className="prompt-box" value={userInput} onChange={onUserChangedText} />
           </div>
-            <a className={isGenerating ? 'generate-button loading' : 'generate-button'} onClick={callGenerateEndpoint}>
+            <button className={isGenerating ? 'generate-button loading' : 'generate-button'} onClick={callGenerateEndpoint}>
               {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
-            </a>
+            </button>
         </div>
         </div>
       </div>
       <div className='footer'>
       <p>brainwashd © 2023</p>
       <div className='socials'>
+        <a href='https://twitter.com/yourbrainwashd' target="_blank">
         <Image src={twitter} className='social' alt='twitter logo'/>
-        <Image src={ig} className='social' alt='instagram logo'/>
+        </a>
+        <a href='https://www.facebook.com/people/brainwashd/100090847960599/' target="_blank">
         <Image src={fb} className='social' alt='facebook logo'/>
+        </a>
       </div>
     </div>
-    </div>
+    </main>
   );
 };
 
