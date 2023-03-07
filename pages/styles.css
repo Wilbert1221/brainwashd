@@ -97,12 +97,12 @@ body {
     font-style: normal;
     font-weight: 500;
     line-height: 1.4em;
-    color: #B2ABF2;
+    color: #7363fd;
     margin: 0px;
 }
 
 h3{
-    color: #999999;
+    color: #646464;
     font-size: 48px;
     text-align: center;
     margin: 0;
@@ -167,7 +167,7 @@ textarea {
 }
 
 .generate-button {
-    background-color:  #B2ABF2;
+    background-color:  #7363fd;
     border-radius: 100px;
     gap: 10px;
     height: min-content;
@@ -251,15 +251,15 @@ textarea {
 
 .output {
     align-items: center;
-    justify-content: center;
     display: flex;
+    flex-direction: column;
     flex: 0 0 auto;
     gap: 30px;
     position: relative;
     min-height: 600px;
     padding: 23px 46px;
-    max-width: 30%;
-    background-color: #B2ABF2;
+    max-width: 35%;
+    background-color: #7363fd;
     border-radius: 20px;
     box-shadow: 0 0 20px 8px #d0d0d0;
 }
@@ -267,7 +267,7 @@ textarea {
 .output-content {
     outline: none;
     display: flex;
-    max-width: 75%;
+    max-width: 80%;
     min-height: 300px;
     flex-direction: column;
     align-items: center;
@@ -277,11 +277,43 @@ textarea {
     position: relative;
 }
 
+.output-head {
+    outline: none;
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.output-head h3{
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.output-head h4{
+    color: #fff;
+    margin:0;
+    
+}
+
+.article-title{
+    font-weight: 500;
+    font-style: italic;
+    font-size: 24px;
+}
+
+.article-author{
+    font-weight: 200;
+    margin-bottom: 10px !important;
+    font-size: 22px;
+}
+
 .output-content p {
     text-align: center;
-    color: #000;
+    color: #fff;
     margin: 0;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 500;
 }
 
@@ -292,7 +324,7 @@ textarea {
     bottom: 30px;
     right: 30px;
     background-color: transparent;
-    z-index: 1;
+    z-index: 10;
     cursor: pointer;
 }
 
@@ -305,7 +337,7 @@ textarea {
     height:40px;
     bottom: 0;
     right:0;
-    z-index: 1;
+    z-index: 0;
     position: absolute;
 }
 
@@ -320,8 +352,12 @@ textarea {
     cursor: pointer;
 }
 
-.icon {
-    fill: red !important;
+.icon{
+    color: #7363fd;
+}
+
+.icon:hover{
+    color: #B2ABF2;
 }
 
 .move1{
@@ -626,6 +662,10 @@ h4 {
   
   .topper p{
     margin: 0;
+  }
+
+  .social{
+    color: #000;
   }
 
   .socials{

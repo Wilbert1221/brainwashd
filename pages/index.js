@@ -1,21 +1,18 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import brain from '../assets/brain.svg';
-import stamp from '../assets/stamp.svg';
-import fb from '../assets/fb.svg';
-import twitter from '../assets/twitter.svg';
-import fbshare from '../assets/fb-share.svg';
-import twittershare from '../assets/twitter-share.svg';
-import share from '../assets/share.svg';
-import copy from '../assets/copy.svg';
+import Brain from '../assets/brain.svg';
+import Stamp from '../assets/stamp.svg';
+import FB from '../assets/fb.svg';
+import Twitter from '../assets/twitter.svg';
+import Share from '../assets/share.svg';
+import Copy from '../assets/copy.svg';
 
 const Home = () => {
   const [userInput, setUserInput] = useState('');
-  const [apiOutput, setApiOutput] = useState('');
+  const [apiOutput, setApiOutput] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [open, toggleOpen] = useState(false);
-
   const toggle = () => {
     toggleOpen(!open);
     console.log(open);
@@ -43,19 +40,20 @@ const Home = () => {
     const data = await response.json();
     const { output } = data;
     console.log("OpenAI replied...", output.text)
-
-    setApiOutput(`${output.text}`);
+    setApiOutput(`${output.text}`.split('|'));
+    console.log(apiOutput);
     setIsGenerating(false);
 }
 
   const onUserChangedText = (event) => {
     setUserInput(event.target.value);
   };
+  console.log(apiOutput);
   return (
     <main className="root">
       <div className='topper'>
       <p>brainwashd</p>
-      <Image className='brain smaller' src={brain} alt='brain'/>
+      <Brain className='brain smaller'/>
       </div>
       <Head>
         <title>brainwashd</title>
@@ -63,29 +61,35 @@ const Home = () => {
       <div className={apiOutput ? 'container-both': 'container-alone'}>
       {apiOutput && (
           <div id="output" className="output">
-            <Image className='stamp' src={stamp} alt='a stamp of a brain'/>
+            <Stamp className='stamp' alt='a stamp of a brain'/>
+              <div className='output-head'>
+                <h3>{apiOutput[0]}</h3>
+                <h4 className='article-author'>{apiOutput[2]}</h4>
+                <h4 className='article-title'>{apiOutput[1]}</h4>
+                
+              </div>
               <div className="output-content">
-                <p>{apiOutput}</p>
+                <p>{apiOutput[3]}</p>
               </div>
               <button className='copy-button' onClick={copyreport}>
-              <Image src={copy} className='share' alt='copy symbol'/>
+              <Copy className='share' alt='copy symbol'/>
               </button>
               <button className='share-button' onClick={toggle}>
-              <Image src={share} className='share' alt='share symbol'/>
+              <Share className='share' alt='share symbol'/>
               </button>
               <div className='multi-button'>
-                <a className={open ? 'move1 icon':'icon'} href="https://twitter.com/intent/tweet">
-                  <Image src={fbshare} alt='facebook logo'/>
+                <a className={open ? 'move1 icon':'icon off'}>
+                  <FB className='icon' alt='facebook logo'/>
                 </a>
-                <a className={open ? 'move2':''}>
-                <Image src={twittershare} className='icon' alt='twitter logo'/>
+                <a className={open ? 'move2 icon': 'icon off'} href="https://twitter.com/intent/tweet">
+                  <Twitter className='icon' alt='twitter logo'/>
                 </a>
               </div>
           </div>
         )}
         <div id="right" className={apiOutput ? 'small right':'right'}>
         <div className="header">
-          <Image className='brain' src={brain} alt='brain'/>
+          <Brain className='brain' alt='brain'/>
           <div className='header-title'>
             <h1>brainwashd?</h1>
           </div>
@@ -108,10 +112,10 @@ const Home = () => {
       <p>brainwashd © 2023</p>
       <div className='socials'>
         <a href='https://twitter.com/yourbrainwashd' target="_blank">
-        <Image src={twitter} className='social' alt='twitter logo'/>
+        <Twitter className='social' alt='twitter logo'/>
         </a>
         <a href='https://www.facebook.com/people/brainwashd/100090847960599/' target="_blank">
-        <Image src={fb} className='social' alt='facebook logo'/>
+        <FB className='social' alt='facebook logo'/>
         </a>
       </div>
     </div>
