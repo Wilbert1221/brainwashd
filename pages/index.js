@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Brain from '../assets/brain.svg';
 import Stamp from '../assets/stamp.svg';
 import FB from '../assets/fb.svg';

@@ -1,3 +1,3 @@
 # brainwashd
 
-### Welcome 👋
+### Welcome

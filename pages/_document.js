@@ -10,10 +10,11 @@ export default function Document() {
         <meta property="og:title" content="brainwashd" key="title"/>
         <meta property="og:description" content="Analyze news articles and social media posts for potential biases and inaccuracies." key="description"/>
         <meta name="description" content="Fake News Detection| Analyze news and social media for biases and inaccuracies | brainwashd"/>
-        <meta
-          property="og:image"
-          content="../assets/seo.png"
-        />
+        <meta property="og:image" content="../assets/seo.png"/>
+        <meta property="twitter:title" content="brainwashd" key="title"/>
+        <meta name="twitter:description" content="Fake News Detection| Analyze news and social media for biases and inaccuracies | brainwashd"/>
+        <meta property="twitter:image" content="../assets/seo.png"/>
+        <meta property="twitter:site" content="www.brainwashd.me"/>
         <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>
       <body>
