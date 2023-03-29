@@ -107,7 +107,7 @@ const Home = () => {
           </div>
         </div>
         <h3 aria-label= "Analyze content">Just drop a link and determine what's real or not. Analyze&nbsp;<span className="typewriter nocaret"></span>.</h3>
-        <div className='CTA'>
+        {/* <div className='CTA'> */}
         {/* <div className='source-type'>
             <button className={(active == 0) ? 'source-button active' : 'source-button'} value={0} onClick={e => activeValue(e)}>News</button>
             <button className={(active == 1) ? 'source-button active' : 'source-button'} value={1} onClick={e => activeValue(e)}>Twitter</button>
@@ -121,7 +121,7 @@ const Home = () => {
               {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
             </button>
           </div>
-        </div>
+        {/* </div> */}
         </div>
       </div>
       <div className='footer'>

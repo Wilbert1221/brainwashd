@@ -7,12 +7,12 @@ body {
 }
 
 .root {
-    display: flex;
-    flex-direction: column;
     background-color: #fcfcfc; 
     color: #000;
     gap: 5px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container-alone {
@@ -110,7 +110,6 @@ h3{
 
 .CTA{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -215,7 +214,7 @@ textarea {
     }
 }
 @media (max-width: 885px){
-    .CTA{
+    .input-submit{
         flex-direction: column;
     }
 }
@@ -406,7 +405,7 @@ textarea {
     #right{
         order:1;
     }
-    .CTA{
+    .input-submit{
         gap:40px;
     }
     .output{
@@ -451,7 +450,7 @@ textarea {
         order:1;
     }
 
-    .CTA{
+    .input-submit{
         gap:40px;
     }
     .container {
@@ -532,6 +531,22 @@ textarea {
     }
     .output-content p{ 
         font-size: 14px;
+    }
+}
+
+@media (max-width: 530px) {
+    .article-title{
+        font-size: 24px;
+        text-align: center;
+    }
+    .article-author{
+        font-size: 20px;
+    }
+    .article-source{
+        font-size: 20px;
+    }
+    .output-content p{ 
+        font-size: 16px;
     }
 }
 
