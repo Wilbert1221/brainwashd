@@ -20,11 +20,7 @@ const Home = () => {
   const toggle = async() => {
     setModal(!modal);
     const dataUrl = await htmlToImage.toPng(domEl.current);
-    // const link = document.createElement('a');
     setScreenshot(dataUrl);
-    // link.download = 'html-to-img.png';
-    // link.href = dataUrl;
-    // link.click();
   }
 
   const copyreport = () => {
@@ -41,6 +37,7 @@ const Home = () => {
       method: 'POST',
       body: ''
     });
+
     const data = await res.json();
     const input = data.text;
     console.log("Calling OpenAI...")
@@ -54,7 +51,6 @@ const Home = () => {
 
     const chat = await response.json();
     const chattext = chat.output.text;
-    // console.log("OpenAI replied... text: ", chattext)
     setOutput({source: data.source, title: data.title, author: data.author[0], text: chattext});
     setIsGenerating(false);
 }
@@ -62,6 +58,7 @@ const Home = () => {
   const onUserChangedText = (event) => {
     setUserInput(event.target.value);
   };
+  
   return (
     <main className={(modal ? 'root blur': 'root')}>
       <div className='topper'>

@@ -21,6 +21,7 @@ export default function Document() {
         <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/images/android-chrome-192x192.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/images/android-chrome-512x512.png"/>
+        <script async src="https://analytics.umami.is/script.js" data-website-id="01d177cb-6abc-4ee5-b24b-67e28e30aa9c"></script>
       </Head>
       <body>
       <div id="fb-root"></div>
