@@ -36,8 +36,8 @@ const Home = () => {
   const callGenerateEndpoint = async () => {
    const restofURL = `?url=${encodeURIComponent(userInput)}`
    setIsGenerating(true);
-  //  const url = process.env.PYTHON_API_URL;
-   const res = await fetch('https://web-production-baee.up.railway.app/parse/url' + restofURL, {
+   const url = process.env.NEXT_PUBLIC_PYTHON_API_URL;
+   const res = await fetch(url + restofURL, {
       method: 'POST',
       body: ''
     });
