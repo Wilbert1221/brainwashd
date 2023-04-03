@@ -1,0 +1,204 @@
+.overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3)
+  }
+  
+  .modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    border-radius: 15px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    z-index: 1000;
+    padding: 30px 60px;
+  }
+
+  .close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    font-family:sans-serif;
+    font-stretch: ultra-expanded;
+    cursor: pointer;
+  }
+
+  .closesvg{
+    width: 20px;
+    height:20px;
+  }
+  
+  .modaltitle{
+    font-size:calc(20px + 1.5vw);
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  .modalsubtitle{
+    font-size:calc(16px + 0.5vw);
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  
+  .content{
+    display: flex;
+    width: 95%;
+    gap: 20px;
+    min-height: 200px;
+    border: 1px solid #dfdfdf;
+    border-radius: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .textarea{
+    width: 50%;
+    border-radius: 15px;
+    border: 1px solid #dfdfdf;
+    margin: 20px 0 20px 20px;
+    font-size: 16px;
+    padding: 8px 32px 8px 16px;
+  }
+
+  .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 20px; */
+  }
+
+  .imagecontainer{
+    width: 50%;
+    border-radius: 15px;
+    background-color: #e6e4f5;
+    margin: 20px 20px 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .image{
+    width: 50%;
+    height: 95%;
+    margin-right: 40px;
+  }
+  
+  .buttons a{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    white-space: nowrap;
+    border-radius: 100px;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+
+  .twittermodal{
+    background-color: #1D9BF0;
+  }
+
+  .facebookmodal{
+    background-color: #4267B2;
+  }
+  
+  .copybutton{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    /* background-color: transparent;
+    color: black; */
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.copybutton:hover{
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+}
+
+.copybutton:hover .copyimage{
+    
+    stroke: black;
+}
+
+.copyimage{
+    stroke: white;
+    width: 20px;
+    height: auto;
+}
+
+.copybutton p{
+    margin: 0;
+}
+
+@media (max-width: 500px){
+    .modal{
+        padding: 15px 30px;
+    }
+    /* .buttons{
+        flex-direction: column;
+    } */
+    .textarea{
+        padding: 4px 16px 4px 8px;
+      }
+    .modaltitle{
+        text-align:center;
+    }
+
+      .modalsubtitle{
+        width: 100%;
+      }
+      
+}
+
+@media (max-width: 800px){
+      .modalsubtitle{
+        width: 90%;
+      }
+      
+}
+
+@media (max-width: 1000px){
+    .content{
+        padding: 20px 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .textarea{
+        width: 80%;
+        margin: 0;
+        min-height: 120px;
+      }
+    
+      .imagecontainer{
+        width: 80%;
+        margin: 0;
+      }
+}

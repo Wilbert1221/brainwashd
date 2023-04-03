@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState, useRef} from 'react';
 import Head from 'next/head';
 import Brain from '../assets/brain.svg';
 import Stamp from '../assets/stamp.svg';
@@ -6,22 +6,25 @@ import FB from '../assets/fb.svg';
 import Twitter from '../assets/twitter.svg';
 import Share from '../assets/share.svg';
 import Copy from '../assets/copy.svg';
+import Modal from '../components/Modal';
+import * as htmlToImage from 'html-to-image';
 
 const Home = () => {
+  const domEl = useRef(null);
   const [userInput, setUserInput] = useState('');
   const [output, setOutput] = useState({source: null, title: null, author: null, text: null});
   const [isGenerating, setIsGenerating] = useState(false);
-  const [open, toggleOpen] = useState(false);
-  const [active, setActive] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [screenshot, setScreenshot] = useState(null); 
   
-  const activeValue = (e) => {
-    setActive(e.target.value);
-  }
-  
-  const toggle = () => {
-    toggleOpen(!open);
-    console.log(open);
-    console.log('click');
+  const toggle = async() => {
+    setModal(!modal);
+    const dataUrl = await htmlToImage.toPng(domEl.current);
+    // const link = document.createElement('a');
+    setScreenshot(dataUrl);
+    // link.download = 'html-to-img.png';
+    // link.href = dataUrl;
+    // link.click();
   }
 
   const copyreport = () => {
@@ -33,6 +36,7 @@ const Home = () => {
   const callGenerateEndpoint = async () => {
    const restofURL = `?url=${encodeURIComponent(userInput)}`
    setIsGenerating(true);
+  //  const url = process.env.PYTHON_API_URL;
    const res = await fetch('https://web-production-baee.up.railway.app/parse/url' + restofURL, {
       method: 'POST',
       body: ''
@@ -59,7 +63,7 @@ const Home = () => {
     setUserInput(event.target.value);
   };
   return (
-    <main className="root">
+    <main className={(modal ? 'root blur': 'root')}>
       <div className='topper'>
       <p>brainwashd</p>
       <Brain className='brain smaller'/>
@@ -67,33 +71,27 @@ const Home = () => {
       <Head>
         <title>brainwashd</title>
       </Head>
+      <Modal modal={modal} setModal={setModal} screenshot={screenshot}></Modal>
       <div className={output.title ? 'container-both': 'container-alone'}>
       {output.title && (
-          <div id="output" className="output">
+          <div className="output">
+            <div className="capture" id="domEl" ref={domEl}>
             <Stamp className='stamp' alt='a stamp of a brain'/>
               <div className='output-head'>
                 <h4 className='article-title'>{output.title}</h4>
                 <h4 className='article-author'>{output.author}</h4>
-                <h4 className='source'>{output.source.toUpperCase()}</h4>
-                
+                <h4 className='source'>{output.source.toUpperCase()}</h4> 
               </div>
               <div className="output-content">
                 <p>{output.text}</p>
               </div>
-              {/* <button className='copy-button' onClick={copyreport} data-tooltip = "Copy">
+              </div>
+              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy">
               <Copy className='share' alt='copy symbol'/>
               </button>
               <button className='share-button' onClick={toggle} data-tooltip = "Share">
               <Share className='share' alt='share symbol'/>
               </button>
-              <div className='multi-button'>
-                <a className={open ? 'move1 icon':'icon off'}>
-                  <FB className='icon' alt='facebook logo'/>
-                </a>
-                <a className={open ? 'move2 icon': 'icon off'} href="https://twitter.com/intent/tweet">
-                  <Twitter className='icon' alt='twitter logo'/>
-                </a>
-              </div> */}
           </div>
         )}
         <div id="right" className={output.title ? 'small right':'right'}>
