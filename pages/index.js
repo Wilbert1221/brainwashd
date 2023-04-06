@@ -138,13 +138,15 @@ const Home = () => {
             <div className="capture" id="domEl" ref={domEl}>
             <Stamp className='stamp' alt='a stamp of a brain'/>
                 <div className='output-head'>
-                <div className='flex'>
+                <div className='tweetfo'>
                 <img src={tweet.profile} className='profpic' alt='profile pic' width='50' height='auto'></img>
+                <div className='namever'>
                 <h4 className='tweetname'>{tweet.name}</h4>
                 <Verified className='verified'></Verified>
                 </div>
+                </div>
                 <a className='article-author anchor' href={`https://twitter.com/${tweet.username}`} target='_blank'>{`@${tweet.username}`}</a>
-                <h4 className='source'>Twitter</h4> 
+                <h4 className='source'>TWITTER</h4> 
               </div>
               <div className="output-content">
                 <p>{tweetUrlLive(tweet.content)}</p>
@@ -198,9 +200,6 @@ const Home = () => {
         <p>Connect API</p>
       </button> */}
       </div>
-      <Head>
-        <title>brainwashd</title>
-      </Head>
       <Modal modal={modal} setModal={setModal} screenshot={screenshot}></Modal>
       <div className={output ? 'container-both': 'container-alone'}>
           {activeOutput()}
@@ -214,13 +213,15 @@ const Home = () => {
             <h2> <span className='grammarly'>grammarly</span> for fake news</h2>
           </div>
         </div>
-        <h3 aria-label= "Analyze content">Just drop a link and determine what's real or not. Analyze&nbsp;<span className="typewriter nocaret"></span>.</h3>
-        <div className='CTA'>
-        <div className='source-type'>
+        <div className='h3contain'>
+        <h3 aria-label= "Analyze content">Just drop a link and determine</h3>
+        <h3 aria-label= "Analyze content">what's real or not. Analyze&nbsp;<span className="typewriter nocaret"></span>.</h3>
+        </div>
+          <div className='flexcol'>
+          <div className='source-type'>
             <button className={(active == 0) ? 'source-button active' : 'source-button'} value={0} onClick={e => activeValue(e)}>News</button>
             <button className={(active == 1) ? 'source-button active' : 'source-button'} value={1} onClick={e => activeValue(e)}>Twitter</button>
             <button className={(active == 2) ? 'source-button active' : 'source-button'}  value={2} onClick={e => activeValue(e)} disabled>Facebook</button>
-          </div>
           </div>
           <div className='input-submit'>
           <div className='prompt-container'>
@@ -230,6 +231,8 @@ const Home = () => {
               {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
             </button>
           </div>
+          </div>
+          
         {/* </div> */}
         </div>
       </div>
