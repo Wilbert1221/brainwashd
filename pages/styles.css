@@ -1009,10 +1009,15 @@ h4 {
         width: 100%;
     }
     .tweetname{
-        font-size: 22px;
+        font-size: 18px;
         text-align: center;
         white-space: nowrap;
     }
+    .namever{
+        display: flex;
+        align-items: center;
+        gap:2px;
+      }
     .article-author{
         font-size: 20px;
     }

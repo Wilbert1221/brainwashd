@@ -68,9 +68,13 @@ const Home = () => {
   if(active == 1){
     setOutput({source: null, title: null, author: null, text: null});
    const strarray = userInput.split('/');
+   console.log(strarray);
    const almost = strarray[strarray.length -1];
-   const almostarr = almost.split('?s')
+   console.log(almost);
+   const almostarr = almost.split('?s');
+   console.log(almost);
    const id = almostarr[0];
+   console.log(id);
    const restofURL = `?id=${id}`;
    const response = await fetch(url + '/parse/tweet'+ restofURL, {
      method: 'POST',
