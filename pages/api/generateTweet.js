@@ -12,7 +12,7 @@ const generateTweet = async (req, res) => {
     model: 'text-davinci-003',
     prompt: `${basePromptPrefix}${req.body.input}`,
     temperature: 0.7,
-    max_tokens: 600,
+    max_tokens: 400,
   });
   
   const basePromptOutput = baseCompletion.data.choices.pop();

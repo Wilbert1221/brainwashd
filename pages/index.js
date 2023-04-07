@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef} from 'react';
 import Head from 'next/head';
 import Brain from '../assets/brain.svg';
 import Stamp from '../assets/stamp.svg';
@@ -18,7 +18,6 @@ const Home = () => {
   const [tweet, setTweet] = useState({name: null, username: null, verified: null, text: null, analysis: null});
   const [isGenerating, setIsGenerating] = useState(false);
   const [active, setActive] = useState(0);
-  // https://www.livemint.com/news/india/1-chinese-anti-submarine-helicopter-3-warships-detected-near-island-taiwan-11680754700420.html
   const [modal, setModal] = useState(false);
   const [screenshot, setScreenshot] = useState(null); 
 
@@ -43,6 +42,7 @@ const Home = () => {
    setIsGenerating(true);
    const url = process.env.NEXT_PUBLIC_PYTHON_API_URL;
    if(active == 0){
+    setTweet({name: null, username: null, verified: null, text: null, analysis: null});
    const restofURL = `?url=${encodeURIComponent(userInput)}`
    
    const res = await fetch(url + '/parse/url' + restofURL, {
@@ -64,8 +64,9 @@ const Home = () => {
    const chat = await response.json();
    const chattext = chat.output.text;
    setOutput({source: data.source, title: data.title, author: data.author[0], text: chattext});
- }
- if(active == 1){
+  }
+  if(active == 1){
+    setOutput({source: null, title: null, author: null, text: null});
    const strarray = userInput.split('/');
    const id = strarray[strarray.length -1];
    const restofURL = '?id=' + id;
@@ -74,7 +75,6 @@ const Home = () => {
      body: ''
    });
    const data = await response.json();
-   console.log(data);
    const input = data.content;
    const user = `@{data.username}`
    const openai = await fetch('/api/generateTweet', {
@@ -93,22 +93,13 @@ const Home = () => {
    
    setIsGenerating(false);
 }
-// useEffect(() => {
-//   const generate = async() => {
-
-//   }
-//   generate();
-
-// }, [active])
-
 
   const onUserChangedText = (event) => {
     setUserInput(event.target.value);
   };
   
   const activeOutput = () => {
-    const temp = active;
-    if(temp == 0 && output.source != null){
+    if(active == 0 && output.source != null){
       return(
         <div className="output">
             <div className="capture" id="domEl" ref={domEl}>
@@ -122,6 +113,7 @@ const Home = () => {
                 <p>{output.text}</p>
               </div>
               </div>
+              <div className='invisible'></div>
               <button className='copy-button' onClick={copyreport} data-tooltip = "Copy">
               <Copy className='share' alt='copy symbol'/>
               </button>
@@ -131,8 +123,7 @@ const Home = () => {
           </div>
       );
     }
-    if(temp == 1 && tweet.username != null){
-      // console.log(tweet)
+    if(active == 1 && tweet.username != null){
       return(
         <div className="output">
             <div className="capture" id="domEl" ref={domEl}>
@@ -153,6 +144,7 @@ const Home = () => {
                 <p className='analysis'>{tweet.analysis}</p>
               </div>
               </div>
+              <div className='invisible'></div>
               <button className='copy-button' onClick={copyreport} data-tooltip = "Copy">
               <Copy className='share' alt='copy symbol'/>
               </button>
@@ -176,7 +168,6 @@ const Home = () => {
   const tweetUrlLive = () => { 
     const arr = tweet.content.split(" ");
     var len = arr.length;
-    console.log(arr);
     for (var i = 0; i < len; i++) {
       if(!isValidUrl(arr[i])){
         arr[i] = arr[i] + ' '
@@ -200,10 +191,13 @@ const Home = () => {
         <p>Connect API</p>
       </button> */}
       </div>
+      <Head>
+        <title>brainwashd</title>
+      </Head>
       <Modal modal={modal} setModal={setModal} screenshot={screenshot}></Modal>
-      <div className={output ? 'container-both': 'container-alone'}>
+      <div className={output.title || tweet.name ? 'container-both': 'container-alone'}>
           {activeOutput()}
-        <div id="right" className={(output.source || tweet.username) ? 'small right':'right'}>
+        <div id="right" className={output.title || tweet.name ? 'small right':'right'}>
         <div className="header">
           <Brain className='brain' alt='brain'/>
           <div className='header-title'>
@@ -232,8 +226,6 @@ const Home = () => {
             </button>
           </div>
           </div>
-          
-        {/* </div> */}
         </div>
       </div>
       <div className='footer'>
