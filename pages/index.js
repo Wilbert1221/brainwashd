@@ -273,7 +273,7 @@ const Home = () => {
       <div className='footer'>
       <p>brainwashd © 2023</p>
       <div className='socials'>
-        <a href="https://www.producthunt.com/posts/brainwashd?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-brainwashd" target="_blank"> <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=389363&theme=dark" alt="product hunt button" width="250" height="50"  data-umami-event="visit-ph"/></a>
+        <a href="https://www.producthunt.com/posts/brainwashd?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-brainwashd" target="_blank" data-umami-event="visit-ph"> <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=389363&theme=dark" alt="product hunt button" width="250" height="50"/></a>
         <a href='https://twitter.com/yourbrainwashd' target="_blank" data-umami-event="visit-twitter">
         <Twitter className='social' alt='twitter logo'/>
         </a>
