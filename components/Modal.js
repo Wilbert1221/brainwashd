@@ -45,7 +45,7 @@ const Modal = ({modal, setModal, screenshot}) => {
                     </textarea>
                     <div className={styles.imagecontainer}>
                         <img className={styles.image} src={screenshot}/> 
-                        <button className={styles.copybutton} onClick={copyimage}>
+                        <button className={styles.copybutton} onClick={copyimage} data-umami-event="copy-report-image">
                             <p>Copy</p>
                             <Copy className={styles.copyimage}></Copy>
                         </button>
@@ -54,7 +54,7 @@ const Modal = ({modal, setModal, screenshot}) => {
                 <div className = {styles.buttons}>
                 <a className={styles.twittermodal}
                     href= {`https://twitter.com/intent/tweet?text=${text}`}
-                    target="_blank">
+                    target="_blank" data-umami-event="share-twitter">
                     <Twitter></Twitter>
                     Share on Twitter </a>
                 {/* <a className={styles.facebookmodal}

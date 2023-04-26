@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import Head from 'next/head';
 import Brain from '../assets/brain.svg';
 import Stamp from '../assets/stamp.svg';
@@ -9,6 +9,7 @@ import Copy from '../assets/copy.svg';
 import Openai from '../assets/openai.svg';
 import Verified from '../assets/verified.svg';
 import Modal from '../components/Modal';
+import Close from '../assets/close.svg';
 import * as htmlToImage from 'html-to-image';
 
 const Home = () => {
@@ -17,11 +18,33 @@ const Home = () => {
   const [output, setOutput] = useState({source: null, title: null, author: null, text: null});
   const [tweet, setTweet] = useState({name: null, username: null, verified: null, text: null, analysis: null});
   const [isGenerating, setIsGenerating] = useState(false);
+  const [feedback, setFeedback] = useState(true);
   const [active, setActive] = useState(0);
   const [modal, setModal] = useState(false);
   const [screenshot, setScreenshot] = useState(null); 
+  const [on, toggleOn] = useState(true);
+
+  useEffect(() => {
+    try{
+      if(userInput){
+        let domain = (new URL(userInput));
+        domain = domain.hostname.replace('.com','');
+        console.log(domain)
+        if(active == 0 && domain != 'twitter'){
+          toggleOn(false);
+        }
+        if(active == 1 && domain == 'twitter'){
+          toggleOn(false);
+        }
+      }
+    }
+    catch(e){
+      alert("The URL entered is invalid. Please enter a valid URL")
+    }
 
 
+  }, [userInput, active])
+  
   const activeValue = (e) => {
     setActive(e.target.value);
   }
@@ -96,6 +119,9 @@ const Home = () => {
 
    setTweet({name: data.author, username: data.username, verified: data.verified, content: data.content, analysis: chattext, profile: data.profile});
  }
+//  if(active == 2){
+
+// }
    
    setIsGenerating(false);
 }
@@ -120,10 +146,10 @@ const Home = () => {
               </div>
               </div>
               <div className='invisible'></div>
-              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy">
+              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy" data-umami-event="copy-report">
               <Copy className='share' alt='copy symbol'/>
               </button>
-              <button className='share-button' onClick={toggle} data-tooltip = "Share">
+              <button className='share-button' onClick={toggle} data-tooltip = "Share" data-umami-event="share-report">
               <Share className='share' alt='share symbol'/>
               </button>
           </div>
@@ -151,10 +177,10 @@ const Home = () => {
               </div>
               </div>
               <div className='invisible'></div>
-              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy">
+              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy" data-umami-event="copy-report">
               <Copy className='share' alt='copy symbol'/>
               </button>
-              <button className='share-button' onClick={toggle} data-tooltip = "Share">
+              <button className='share-button' onClick={toggle} data-tooltip = "Share" data-umami-event="share-report">
               <Share className='share' alt='share symbol'/>
               </button>
           </div>
@@ -169,6 +195,10 @@ const Home = () => {
     } catch (err) {
       return false;
     }
+  }
+
+  const close = () => { 
+    setFeedback(false);
   }
 
   const tweetUrlLive = () => { 
@@ -187,6 +217,12 @@ const Home = () => {
 
   return (
     <main className={(modal ? 'root blur': 'root')}>
+      {/* <div className={feedback ? `banner` : `banner none`}>
+        <span> You can help improve brainwashd by providing feedback. <a href='#'> Click here to complete a quick survey</a></span>
+        <button className="closebutton" onClick={close}>
+        <Close className="closefeedback"></Close>
+        </button>
+      </div> */}
       <div className='topper'>
       <div className='flex'>
       <p>brainwashd</p>
@@ -221,13 +257,13 @@ const Home = () => {
           <div className='source-type'>
             <button className={(active == 0) ? 'source-button active' : 'source-button'} value={0} onClick={e => activeValue(e)}>News</button>
             <button className={(active == 1) ? 'source-button active' : 'source-button'} value={1} onClick={e => activeValue(e)}>Twitter</button>
-            <button className={(active == 2) ? 'source-button active' : 'source-button'}  value={2} onClick={e => activeValue(e)} disabled>Facebook</button>
+            {/* <button className={(active == 2) ? 'source-button active' : 'source-button'}  value={2} onClick={e => activeValue(e)} disabled>Facebook</button> */}
           </div>
           <div className='input-submit'>
           <div className='prompt-container'>
             <input placeholder="Drop content link:" className="prompt-box" value={userInput} onChange={onUserChangedText} />
           </div>
-            <button className={isGenerating ? 'generate-button loading' : 'generate-button'} onClick={callGenerateEndpoint}>
+            <button className={isGenerating ? 'generate-button loading' : 'generate-button'} onClick={callGenerateEndpoint} disabled={on} data-umami-event="generate-report">
               {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
             </button>
           </div>
@@ -237,10 +273,11 @@ const Home = () => {
       <div className='footer'>
       <p>brainwashd © 2023</p>
       <div className='socials'>
-        <a href='https://twitter.com/yourbrainwashd' target="_blank">
+        <a href="https://www.producthunt.com/posts/brainwashd?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-brainwashd" target="_blank"> <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=389363&theme=dark" alt="product hunt button" width="250" height="50"  data-umami-event="visit-ph"/></a>
+        <a href='https://twitter.com/yourbrainwashd' target="_blank" data-umami-event="visit-twitter">
         <Twitter className='social' alt='twitter logo'/>
         </a>
-        <a href='https://www.facebook.com/people/brainwashd/100090847960599/' target="_blank">
+        <a href='https://www.facebook.com/people/brainwashd/100090847960599/' target="_blank" data-umami-event="visit-fb">
         <FB className='social' alt='facebook logo'/>
         </a>
       </div>

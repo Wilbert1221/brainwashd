@@ -154,6 +154,11 @@ textarea {
     border:none;
 }
 
+.generate-button:disabled{
+    background-color:  #c8c2ff;
+    border: 1px solid #ffa7a7;
+}
+
 .generate-button p {
     color: rgb(255, 255, 255);
     font-size: 20px;
@@ -472,7 +477,48 @@ h4 {
     justify-content: space-between;
     font-size: 30px;
     font-weight: 500;
-    margin-top: 10px;
+  }
+  
+  .banner{
+    width: 98%;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #7363fd;
+    align-self: center;
+    margin-top: 0.5%;
+    padding: 3px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .none{
+    display: none;
+  }
+
+  .closebutton{
+    border: none;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+
+  }
+
+  .closefeedback{
+    color: white;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .banner span{
+    color: white;
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .banner span a{
+    color: white;
   }
 
   .flex{
