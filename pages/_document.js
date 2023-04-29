@@ -8,11 +8,11 @@ export default function Document() {
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <meta property="og:title" content="brainwashd" key="title"/>
         <meta property="og:description" content="Analyze news articles and social media posts for potential biases and inaccuracies." key="description"/>
-        <meta name="description" content="Fake News Detection| Analyze news and social media for biases and inaccuracies | brainwashd"/>
-        <meta property="og:image" content="../assets/seo.png"/>
+        <meta name="description" content="Analyze news articles and social media posts for potential biases and inaccuracies."/>
+        <meta property="og:image" content="/images/seo.png"/>
         <meta property="twitter:title" content="brainwashd" key="title"/>
-        <meta name="twitter:description" content="Fake News Detection| Analyze news and social media for biases and inaccuracies | brainwashd"/>
-        <meta property="twitter:image" content="../assets/seo.png"/>
+        <meta name="twitter:description" content="Analyze news and tweets for bias and inaccuracy | brainwashd"/>
+        <meta property="twitter:image" content="/images/seo.png"/>
         <meta property="twitter:site" content="www.brainwashd.me"/>
         <meta name="twitter:card" content="summary_large_image"></meta>
         <link rel="shortcut icon" href="/images/favicon.ico" />
