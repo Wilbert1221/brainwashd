@@ -273,11 +273,12 @@ const Home = () => {
   const renderContext = () => {
     const arr = output.context
     for(var i = 0; i < arr.length; i++){
-      if(typeof arr[i] === 'string')
+      if(typeof arr[i] === 'string' && output.context){
         var curr = arr[i];
         const text = arr[i].substring(0, curr.indexOf("http") - 2);
         const link = arr[i].substring(curr.indexOf("http"));
         arr[i] = <a href={link} target="_blank">{text} </a>
+      }
     }
     const listItems = arr.map((item, index) => (
         <li key={index}>{item}</li>
