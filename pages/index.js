@@ -15,14 +15,16 @@ import * as htmlToImage from 'html-to-image';
 const Home = () => {
   const domEl = useRef(null);
   const [userInput, setUserInput] = useState('');
-  const [output, setOutput] = useState({source: null, title: null, author: null, text: null});
+  const [output, setOutput] = useState({source: null, title: null, author: null, text: null, context:null});
   const [tweet, setTweet] = useState({name: null, username: null, verified: null, text: null, analysis: null});
   const [isGenerating, setIsGenerating] = useState(false);
+  const [news, setNews] = useState(null);
   const [feedback, setFeedback] = useState(true);
   const [active, setActive] = useState(0);
   const [modal, setModal] = useState(false);
   const [screenshot, setScreenshot] = useState(null); 
   const [on, toggleOn] = useState(true);
+  const [resources, setResources] = useState(false);
 
   useEffect(() => {
     try{
@@ -44,7 +46,53 @@ const Home = () => {
 
 
   }, [userInput, active])
+
+  useEffect(() => {
+    const getContext = async() => {
+        console.log("a little extra love from OpenAI...")
+       const response = await fetch('/api/context', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+         },
+         body:JSON.stringify({input: news, report: output.text}),
+       });
+    
+       const data = await response.json();
+       const resources = data.output.text;
+       console.log(resources);
+       const regex = /\d+\. /;
+       const contextwhite = resources.split(regex);
+       const context = contextwhite.filter(str => str.trim() !== '');
+      console.log(context);
+      
+      //  const context = resources.split("\n").map((source) => {
+      //   // Extract the title and author from each book title
+      //   const titleAndAuthor = source.substring(source.indexOf("'") + 1, source.lastIndexOf("'"));
+      //   // Extract the publication information from each book title
+      //   const publicationInfo = source.substring(source.lastIndexOf("(") + 1, source.lastIndexOf(")"));
+      //   // Check if the publication information contains a URL
+      //   const hasUrl = publicationInfo.includes("http");
+      //   // If the publication information contains a URL, format it as a clickable link
+      //   const formattedPublicationInfo = hasUrl ? `<a href="${publicationInfo}">${publicationInfo}</a>` : publicationInfo;
+      //   // Combine the formatted title and author with the formatted publication information
+      //   return `${titleAndAuthor} (${formattedPublicationInfo})`;
+      // });
+      // console.log(context);
+       setOutput({...output, context: context});
+       
+    }
+
+    if(output.text){
+      getContext()
+    }
+  }, [output.text])
   
+
+  const handleResources = () => {
+    setResources(true);
+  }
+
   const activeValue = (e) => {
     setActive(e.target.value);
   }
@@ -66,6 +114,8 @@ const Home = () => {
    const url = process.env.NEXT_PUBLIC_PYTHON_API_URL;
    if(active == 0){
     setTweet({name: null, username: null, verified: null, text: null, analysis: null});
+    setOutput({...output, context: null});
+    setResources(false);
    const restofURL = `?url=${encodeURIComponent(userInput)}`
    
    const res = await fetch(url + '/parse/url' + restofURL, {
@@ -75,6 +125,7 @@ const Home = () => {
 
    const data = await res.json();
    const input = data.text;
+   setNews(input);
    console.log("Calling OpenAI...")
    const response = await fetch('/api/generate', {
      method: 'POST',
@@ -86,10 +137,12 @@ const Home = () => {
 
    const chat = await response.json();
    const chattext = chat.output.text;
-   setOutput({source: data.source, title: data.title, author: data.author[0], text: chattext});
+
+   setOutput({source: data.source, title: data.title, author: data.author[0], text: chattext, context: null});
   }
+
   if(active == 1){
-    setOutput({source: null, title: null, author: null, text: null});
+   setOutput({source: null, title: null, author: null, text: null, context: null});
    const strarray = userInput.split('/');
    console.log(strarray);
    const almost = strarray[strarray.length -1];
@@ -215,6 +268,23 @@ const Home = () => {
     return arr; 
   }
 
+
+
+  const renderContext = () => {
+    const arr = output.context
+    for(var i = 0; i < arr.length; i++){
+      if(typeof arr[i] === 'string')
+        var curr = arr[i];
+        const text = arr[i].substring(0, curr.indexOf("http") - 2);
+        const link = arr[i].substring(curr.indexOf("http"));
+        arr[i] = <a href={link} target="_blank">{text} </a>
+    }
+    const listItems = arr.map((item, index) => (
+        <li key={index}>{item}</li>
+      ));
+    return <ol>{listItems}</ol>;
+  }
+
   return (
     <main className={(modal ? 'root blur': 'root')}>
       {/* <div className={feedback ? `banner` : `banner none`}>
@@ -270,6 +340,24 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* <div className='chrome-extension'>
+        <h1>Coming Soon. brainwashd analyzes content in the browser as you read!</h1>
+        <a href='#'> Add to Chrome </a>
+      </div> */}
+      {/* Render the "Learn More" button only if output.context is not null */}
+      {(output.text && !output.context) && (
+        <h1 className='wait'> Generating something special .... </h1>
+      )}
+      {(output.context && !resources) && (
+        <button className="learn-more-btn" onClick={handleResources}>Click for Resources</button>
+      )}
+      {(output.context && resources) && (
+        <div className='resources'>
+          <h1>Resources</h1>
+          {renderContext()}
+        </div>
+      )}
+      
       <div className='footer'>
       <p>brainwashd © 2023</p>
       <div className='socials'>

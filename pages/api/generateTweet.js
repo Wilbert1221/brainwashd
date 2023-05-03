@@ -7,7 +7,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const generateTweet = async (req, res) => {
-  const basePromptPrefix = `Does the following tweet posted by ${req.body.user} contain potential biases or inaccuracies? If not, why not? If so, please describe them:`;
+  const basePromptPrefix = `Does the following tweet posted by ${req.body.user} potentially contain potential biases or inaccuracies? If not, why not? If so, please describe what they could be:`;
   const baseCompletion = await openai.createCompletion({
     model: 'text-davinci-003',
     prompt: `${basePromptPrefix}${req.body.input}`,

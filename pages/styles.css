@@ -38,8 +38,13 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0 25px 0 100px;
-    margin: 0 auto;
+    margin: -10px auto 0 auto;
     gap: 20px;
+}
+.wait{
+    color: #8c9cae;
+    font-size: 24px;
+    align-self: center;
 }
 
 .right{
@@ -221,7 +226,7 @@ textarea {
     outline: none;
     display: flex;
     max-width: 97%;
-    min-height: 300px;
+    min-height: 200px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -583,6 +588,23 @@ h4 {
     background-color: #1a7f64;
   }
 
+  .learn-more-btn {
+    background-color: #15c39a;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 400;
+    width: fit-content;
+    align-self: center;
+  }
+  
+  .learn-more-btn:hover {
+    cursor: pointer;
+    background-color: #15ae8a;;
+  }
+
   .connect p{
     font-size: 20px;
     color: #ffffff;
@@ -813,7 +835,45 @@ h4 {
     position: relative;
   }
 
-  @media (max-width: 1430px) {
+.chrome-extension{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chrome-extension h1{
+    font-weight: 400;
+    font-size: 3vw;
+    width: 70%;
+    text-align: left;
+}
+
+.chrome-extension a{
+    background-color: #15c39a;
+    border-radius: 8px;
+    height: min-content;
+    padding: 16px 24px;
+    text-decoration: none;
+    white-space: nowrap;
+    color: #ffffff;
+    width: min-content;
+    cursor: pointer;
+    outline: none;
+    border:none;
+}
+
+.resources{
+    width: 80%;
+    align-self: center;
+}
+
+.resources li a, .resources li{
+    font-size: 24px;
+    color: #8c9cae;
+}
+
+@media (max-width: 1430px) {
     .output {
         padding: 18px 36px;
         max-width: 30%;
@@ -853,7 +913,6 @@ h4 {
     }
 }
 @media (min-width: 810px) and (max-width: 1300px) {
-    
     .container-both{
         flex-direction: column;
         padding: 0;

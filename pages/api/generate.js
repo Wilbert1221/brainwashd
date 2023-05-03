@@ -6,7 +6,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = `Does the following text contain potential biases or inaccuracies? If not, why not? If so, please describe them:`;
+const basePromptPrefix = `Does the following text potentially contain potential biases or inaccuracies? If not, why not? If so, please describe what they could be:`;
 console.log(`API: ${basePromptPrefix}`);
 
 const generateAction = async (req, res) => {
