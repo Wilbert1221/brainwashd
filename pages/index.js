@@ -277,7 +277,7 @@ const Home = () => {
         var curr = arr[i];
         const text = arr[i].substring(0, curr.indexOf("http") - 2);
         const link = arr[i].substring(curr.indexOf("http"));
-        arr[i] = <a href={link} target="_blank">{text} </a>
+        arr[i] = <a href={link} target="_blank">{text}</a>
       }
     }
     const listItems = arr.map((item, index) => (
@@ -363,12 +363,14 @@ const Home = () => {
       <p>brainwashd © 2023</p>
       <div className='socials'>
         <a href="https://www.producthunt.com/posts/brainwashd?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-brainwashd" target="_blank" data-umami-event="visit-ph"> <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=389363&theme=dark" alt="product hunt button" width="250" height="50"/></a>
-        <a href='https://twitter.com/yourbrainwashd' target="_blank" data-umami-event="visit-twitter">
-        <Twitter className='social' alt='twitter logo'/>
-        </a>
-        <a href='https://www.facebook.com/people/brainwashd/100090847960599/' target="_blank" data-umami-event="visit-fb">
-        <FB className='social' alt='facebook logo'/>
-        </a>
+        <div className='footerbutter'>
+          <a href='https://twitter.com/yourbrainwashd' target="_blank" data-umami-event="visit-twitter">
+            <Twitter className='social' alt='twitter logo'/>
+          </a>
+          <a href='https://www.facebook.com/people/brainwashd/100090847960599/' target="_blank" data-umami-event="visit-fb">
+            <FB className='social' alt='facebook logo'/>
+          </a>
+        </div>
       </div>
     </div>
     </main>
