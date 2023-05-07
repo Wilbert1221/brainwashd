@@ -243,7 +243,7 @@ textarea {
     display: flex;
     max-width: 100%;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     gap: 10px;
 }
@@ -1055,7 +1055,6 @@ h4 {
         align-items: center;
         justify-content: center;
         gap: 15px;
-        order: 1;
     }
 
 }
@@ -1155,5 +1154,10 @@ h4 {
         width: 95%;
         text-align: center;
     }
+    .output-head h4{
+        font-size: 16px;
+        
+    }
+    
 }
 
