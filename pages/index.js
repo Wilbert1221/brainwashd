@@ -5,7 +5,7 @@ import Stamp from '../assets/stamp.svg';
 import FB from '../assets/fb.svg';
 import Twitter from '../assets/twitter.svg';
 import Share from '../assets/share.svg';
-import Copy from '../assets/copy.svg';
+// import Copy from '../assets/copy.svg';
 import Openai from '../assets/openai.svg';
 import Verified from '../assets/verified.svg';
 import Modal from '../components/Modal';
@@ -99,15 +99,15 @@ const Home = () => {
 
   const toggle = async() => {
     setModal(!modal);
-    const dataUrl = await htmlToImage.toPng(domEl.current);
+    const dataUrl = await htmlToImage.toPng(document.getElementById('domEl'));
     setScreenshot(dataUrl);
   }
 
-  const copyreport = () => {
-    navigator.clipboard.writeText(output.title + "\n" + output.author + "\n" + output.source.toUpperCase()  + output.text);
-    console.log(output);
-    console.log('copied');
-  }
+  // const copyreport = () => {
+  //   navigator.clipboard.writeText(output.title + "\n" + output.author + "\n" + output.source.toUpperCase()  + output.text);
+  //   console.log(output);
+  //   console.log('copied');
+  // }
 
   const callGenerateEndpoint = async() => {
    setIsGenerating(true);
@@ -199,9 +199,6 @@ const Home = () => {
               </div>
               </div>
               <div className='invisible'></div>
-              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy" data-umami-event="copy-report">
-              <Copy className='share' alt='copy symbol'/>
-              </button>
               <button className='share-button' onClick={toggle} data-tooltip = "Share" data-umami-event="share-report">
               <Share className='share' alt='share symbol'/>
               </button>
@@ -230,9 +227,6 @@ const Home = () => {
               </div>
               </div>
               <div className='invisible'></div>
-              <button className='copy-button' onClick={copyreport} data-tooltip = "Copy" data-umami-event="copy-report">
-              <Copy className='share' alt='copy symbol'/>
-              </button>
               <button className='share-button' onClick={toggle} data-tooltip = "Share" data-umami-event="share-report">
               <Share className='share' alt='share symbol'/>
               </button>
@@ -316,13 +310,19 @@ const Home = () => {
           <div className='header-title'>
             <h1>brainwashd?</h1>
           </div>
-          <div className="header-subtitle">
+          {/* <div className="header-subtitle">
             <h2> <span className='grammarly'>grammarly</span> for fake news</h2>
-          </div>
+          </div> */}
         </div>
-        <div className='h3contain'>
+        {/* <div className='h3contain'>
         <h3 aria-label= "Analyze content">Just drop a link and determine</h3>
         <h3 aria-label= "Analyze content">what's real or not. Analyze&nbsp;<span className="typewriter nocaret"></span>.</h3>
+        </div> */}
+        <div className='headlanding'>
+          <div className='redslash'></div>
+          <text className='redword'>nullify</text>
+          <text className='hdlandingtxt'>real-time context analyze tweets & news nullify misinformation</text>
+          <div className='greenhighlight'></div>
         </div>
           <div className='flexcol'>
           <div className='source-type'>
@@ -346,6 +346,7 @@ const Home = () => {
         <a href='#'> Add to Chrome </a>
       </div> */}
       {/* Render the "Learn More" button only if output.context is not null */}
+      <div className='resources'>
       {(output.text && !output.context) && (
         <h1 className='wait'> Generating something special .... </h1>
       )}
@@ -353,13 +354,15 @@ const Home = () => {
         <button className="learn-more-btn" onClick={handleResources}>Click for Resources</button>
       )}
       {(output.context && resources) && (
-        <div className='resources'>
-          <h1>Resources</h1>
-          {renderContext()}
-        </div>
+        <>
+        <h1>Resources</h1>
+        {renderContext()}
+        </>
+          
       )}
+      </div>
       
-      <div className='footer'>
+      {/* <div className='footer'>
       <p>brainwashd © 2023</p>
       <div className='socials'>
         <a href="https://www.producthunt.com/posts/brainwashd?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-brainwashd" target="_blank" data-umami-event="visit-ph"> <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=389363&theme=dark" alt="product hunt button" width="250" height="50"/></a>
@@ -372,7 +375,7 @@ const Home = () => {
           </a>
         </div>
       </div>
-    </div>
+    </div> */}
     </main>
   );
 };

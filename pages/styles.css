@@ -44,7 +44,6 @@ body {
 .wait{
     color: #8c9cae;
     font-size: 24px;
-    align-self: center;
 }
 
 .right{
@@ -54,7 +53,7 @@ body {
     flex-direction: column;
     max-width: 975px;
     width: max-content;
-    gap: 20px;
+    gap: 12px;
     margin-bottom: 20px;
 }
 
@@ -65,11 +64,92 @@ body {
     justify-content: center;
 }
 
+.headlanding{
+  flex-shrink: 0;
+  width: 775px;
+  height: 260px;
+  display: block;
+  overflow: visible;
+  position: relative;
+  border-radius: 0px 0px 0px 0px;
+  margin-left: 50px;
+}
+
+.hdlandingtxt{
+  width: auto; /* 749px */
+  height: auto; /* 259px */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  z-index: 1;
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  color: #333333;
+  font-size: 72px;
+  letter-spacing: -2.6px;
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+}
+
+.redword{
+    width: auto; /* 243px */
+    height: auto; /* 87px */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  z-index: 1000;
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  color: #c70000;
+  font-size: 72px;
+  letter-spacing: -2.6px;
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 0px;
+  bottom: 0.5px;
+}
+
+.redslash{
+    width: 224px;
+  height: 8px;
+  display: block;
+  background-color: #c70000;
+  overflow: hidden;
+  transform: rotate(-6deg);
+  z-index: 1;
+  position: absolute;
+  border-radius: 0px 0px 0px 0px;
+  left: -12px; 
+  bottom: 33px;
+}
+
+.greenhighlight{
+  box-sizing: border-box;
+  width: 502px;
+  height: 87px;
+  display: block;
+  background-color: #f0fff0;
+  overflow: hidden;
+  z-index: 0;
+  position: absolute;
+  border-radius: 15px;
+  border: 1px solid #1cff1c;
+  left: 262px;
+  bottom: 86px;
+  
+}
+
 .small{
-    -webkit-transform:scale(0.8);
-    -moz-transform:scale(0.8);
-    -ms-transform:scale(0.8);
-    transform:scale(0.8);
+    -webkit-transform:scale(0.75);
+    -moz-transform:scale(0.75);
+    -ms-transform:scale(0.75);
+    transform:scale(0.75);
 }
 .bigger{
     -webkit-transform:scale(1.25);
@@ -81,11 +161,11 @@ body {
 
 .brain{
     height: auto;
-    width: 180px;
+    width: 140px;
 }
 
 .smaller{
-    width:50px;
+    width:90px;
     height: auto;
 }
 
@@ -97,7 +177,7 @@ body {
     width: 100%;
     font-weight: 800;
     /* font-size: 144px; */
-    font-size: 8.1vw;
+    font-size: 7.5vw;
     letter-spacing: -4px;
     line-height: 1.2em;
     margin: 0;
@@ -299,13 +379,18 @@ textarea {
 }
 
 .share-button{
-    border:none;
+    width: 85%;
+    align-self: center;
+    border: 1px solid white;
+    border-radius: 20px;
     position: absolute;
     bottom: 38px;
-    right: 30px;
+    right: 50%;
+    transform: translateX(50%);
     background-color: transparent;
     z-index: 10;
     cursor: pointer;
+    color: white;
 }
 
 .share-button:hover{
@@ -471,17 +556,19 @@ h4 {
   }
 
   .topper{
-    height: 75px;
+    height: 124px;
     padding: 0px 64px;
     background-color: #fcfcfc;
-    color: #000;
+    color: #111111;
     justify-self: flex-start;
     display: flex;
     gap: 5px;
     align-items: center;
     justify-content: space-between;
-    font-size: 30px;
+    font-size: 42px;
     font-weight: 500;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 1px;
   }
   
   .banner{
@@ -551,8 +638,6 @@ h4 {
     gap:20px;
     width: 100%;
   }
-
-
 
   .verified{
     width: 30px;
@@ -630,7 +715,7 @@ h4 {
     display: none;
 }
 
-.copy-button{
+/* .copy-button{
     border:none;
     position: absolute;
     bottom: 35px;
@@ -638,7 +723,7 @@ h4 {
     background-color: transparent;
     z-index: 1;
     cursor: pointer;
-}
+} */
 
 .invisible{
     width: 100%;
@@ -864,8 +949,15 @@ h4 {
 }
 
 .resources{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 80%;
     align-self: center;
+    margin: 50px 0;
+}
+.resources h1{
+    font-size: 3.0vw;
 }
 
 .resources li a, .resources li{
@@ -965,10 +1057,13 @@ h4 {
     }
 
     #output{
-        order:2;
+        order:1;
     }
 
     #right{
+        order:2;
+    }
+    #resources{
         order:1;
     }
 
@@ -1118,6 +1213,23 @@ h4 {
     }
     .source-button{
         font-size: 18px;
+    }
+    .resources{
+        align-items: center;
+        width: 90%;
+    }
+
+    .resources ol{
+        width: 98%;
+        padding-left: 15px;
+    }
+    .resources li, .resources li a{
+        
+        font-size: 16px;
+
+    }
+    .wait{
+        text-align: center;
     }
 }
 
