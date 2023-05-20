@@ -310,19 +310,14 @@ const Home = () => {
           <div className='header-title'>
             <h1>brainwashd?</h1>
           </div>
-          {/* <div className="header-subtitle">
-            <h2> <span className='grammarly'>grammarly</span> for fake news</h2>
-          </div> */}
-        </div>
-        {/* <div className='h3contain'>
-        <h3 aria-label= "Analyze content">Just drop a link and determine</h3>
-        <h3 aria-label= "Analyze content">what's real or not. Analyze&nbsp;<span className="typewriter nocaret"></span>.</h3>
-        </div> */}
-        <div className='headlanding'>
+          <div className='headlanding'>
           <div className='redslash'></div>
           <text className='redword'>nullify</text>
-          <text className='hdlandingtxt'>real-time context analyze tweets & news nullify misinformation</text>
+          <text className='hdlandingtxt'>real-time context</text>
+          <text className='hdlandingtxt'>analyze tweets & news</text>
+          <text className='hdlandingtxt'>nullify misinformation</text>
           <div className='greenhighlight'></div>
+        </div>
         </div>
           <div className='flexcol'>
           <div className='source-type'>

@@ -65,20 +65,17 @@ body {
 }
 
 .headlanding{
-  flex-shrink: 0;
-  width: 775px;
-  height: 260px;
-  display: block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   overflow: visible;
   position: relative;
-  border-radius: 0px 0px 0px 0px;
   margin-left: 50px;
 }
 
 .hdlandingtxt{
-  width: auto; /* 749px */
-  height: auto; /* 259px */
-  white-space: pre-wrap;
+  display: flex;
+  white-space: nowrap;
   word-wrap: break-word;
   word-break: break-word;
   max-width: 100%;
@@ -91,8 +88,12 @@ body {
   letter-spacing: -2.6px;
   line-height: 1.2;
   text-align: left;
-  position: absolute;
 }
+
+/* .hdlandingtxt span{
+    color: #ffffff;
+  } */
+  
 
 .redword{
     width: auto; /* 243px */
@@ -140,9 +141,8 @@ body {
   position: absolute;
   border-radius: 15px;
   border: 1px solid #1cff1c;
-  left: 262px;
+  left: 252px;
   bottom: 86px;
-  
 }
 
 .small{
@@ -1003,6 +1003,81 @@ h4 {
     .input-submit{
         flex-direction: column;
     }
+    .headlanding{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        position: relative;
+        margin-left: 50px;
+      }
+      
+      .hdlandingtxt{
+        display: flex;
+        white-space: nowrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        z-index: 1;
+        font-weight: 700;
+        font-style: normal;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        color: #333333;
+        font-size: 64px;
+        letter-spacing: -2.6px;
+        line-height: 1.2;
+        text-align: left;
+      }
+      
+      .redword{
+          width: auto; /* 243px */
+          height: auto; /* 87px */
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        z-index: 1000;
+        font-weight: 700;
+        font-style: normal;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        color: #c70000;
+        font-size: 64px;
+        letter-spacing: -2.6px;
+        line-height: 1.2;
+        text-align: left;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+      }
+      
+      .redslash{
+        width: 195px;
+        height: 5px;
+        display: block;
+        background-color: #c70000;
+        overflow: hidden;
+        transform: rotate(-6deg);
+        z-index: 1;
+        position: absolute;
+        border-radius: 0px 0px 0px 0px;
+        left: -12px; 
+        bottom: 33px;
+      }
+      
+      .greenhighlight{
+        box-sizing: border-box;
+        width: 432px;
+        height: 60px;
+        display: block;
+        background-color: #f0fff0;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 15px;
+        border: 1px solid #1cff1c;
+        left: 222px;
+        bottom: 84px;
+      }
 }
 @media (min-width: 810px) and (max-width: 1300px) {
     .container-both{
@@ -1083,6 +1158,80 @@ h4 {
     .prompt-box {
         width: 100%;
     }
+    .headlanding{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        position: relative;
+        margin-left: 50px;
+      }
+      
+      .hdlandingtxt{
+        display: flex;
+        white-space: nowrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        z-index: 1;
+        font-weight: 700;
+        font-style: normal;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        color: #333333;
+        font-size: 48px;
+        letter-spacing: -2.6px;
+        line-height: 1.2;
+        text-align: left;
+      }
+      
+      .redword{
+          width: auto; /* 243px */
+          height: auto; /* 87px */
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        z-index: 1000;
+        font-weight: 700;
+        font-style: normal;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        color: #c70000;
+        font-size: 48px;
+        letter-spacing: -2.6px;
+        line-height: 1.2;
+        text-align: left;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+      }
+      
+      .redslash{
+        width: 142px;
+        height: 5px;
+        display: block;
+        background-color: #c70000;
+        overflow: hidden;
+        transform: rotate(-6deg);
+        z-index: 1;
+        position: absolute;
+        left: -8px; 
+        bottom: 23px;
+      }
+      
+      .greenhighlight{
+        box-sizing: border-box;
+        width: 310px;
+        height: 54px;
+        display: block;
+        background-color: #f0fff0;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 15px;
+        border: 1px solid #1cff1c;
+        left: 162px;
+        bottom: 60px;
+      }
 }
 
 @media (max-width: 600px) {
@@ -1151,7 +1300,82 @@ h4 {
         justify-content: center;
         gap: 15px;
     }
-
+    
+    .headlanding{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        position: relative;
+        align-self: center;
+        margin-left: 0;
+      }
+      
+      .hdlandingtxt{
+        display: flex;
+        white-space: nowrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        z-index: 1;
+        font-weight: 500;
+        font-style: normal;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        color: #333333;
+        font-size: 36px;
+        letter-spacing: -2.6px;
+        line-height: 1.2;
+        text-align: left;
+      }
+      
+      .redword{
+          width: auto; /* 243px */
+          height: auto; /* 87px */
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        z-index: 1000;
+        font-weight: 500;
+        font-style: normal;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        color: #c70000;
+        font-size: 36px;
+        letter-spacing: -2.6px;
+        line-height: 1.2;
+        text-align: left;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+      }
+      
+      .redslash{
+        width: 90px;
+        height: 3px;
+        display: block;
+        background-color: #c70000;
+        overflow: hidden;
+        transform: rotate(-6deg);
+        z-index: 1;
+        position: absolute;
+        left: -8px; 
+        bottom: 19px;
+      }
+      
+      .greenhighlight{
+        box-sizing: border-box;
+        width: 206px;
+        height: 48px;
+        display: block;
+        background-color: #f0fff0;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 15px;
+        border: 1px solid #1cff1c;
+        left: 110px;
+        bottom: 40px;
+      }
 }
 
 @media (max-width: 550px) {
