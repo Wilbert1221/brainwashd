@@ -2,14 +2,14 @@ import {useState, useRef, useEffect} from 'react';
 import Head from 'next/head';
 import Brain from '../assets/brain.svg';
 import Stamp from '../assets/stamp.svg';
-import FB from '../assets/fb.svg';
-import Twitter from '../assets/twitter.svg';
+// import FB from '../assets/fb.svg';
+// import Twitter from '../assets/twitter.svg';
 import Share from '../assets/share.svg';
 // import Copy from '../assets/copy.svg';
-import Openai from '../assets/openai.svg';
+// import Openai from '../assets/openai.svg';
 import Verified from '../assets/verified.svg';
 import Modal from '../components/Modal';
-import Close from '../assets/close.svg';
+// import Close from '../assets/close.svg';
 import * as htmlToImage from 'html-to-image';
 
 const Home = () => {
