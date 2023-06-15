@@ -977,6 +977,7 @@ h4 {
 @media (max-width: 1300px) {
     .output {
         max-height: none;
+        max-width: 40%;
     }
 }
 
